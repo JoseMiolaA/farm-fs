@@ -17,5 +17,5 @@ public interface IPlotService {
 
      List<Plot> getByFarmId(String id);
 
-     Long getProductivityById(String id);
+     double getProductivityById(String id);
 }

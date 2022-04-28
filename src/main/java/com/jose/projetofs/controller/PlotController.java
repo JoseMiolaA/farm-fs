@@ -35,6 +35,10 @@ public class PlotController {
         return plotService.getByFarmId(farmId);
     }
 
+    @GetMapping("/productivity/{id}")
+    public double getProductivity(@PathVariable String id){
+        return plotService.getProductivityById(id);
+    }
 
     @PostMapping
     Plot create(@RequestBody Plot plot){

@@ -12,12 +12,12 @@ public class Plot {
 
     private String farmId;
     private String name;
-    private long area;
-    private long production;
+    private double area;
+    private double production;
 
 
 
-    public long calculateProductivity(){
+    public double calculateProductivity(){
         return production/area;
     }
 
@@ -47,7 +47,7 @@ public class Plot {
         this.farmId = farmId;
     }
 
-    public long getArea() {
+    public double getArea() {
         return area;
     }
 
@@ -55,7 +55,7 @@ public class Plot {
         this.area = area;
     }
 
-    public long getProduction() {
+    public double getProduction() {
         return production;
     }
 

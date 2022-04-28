@@ -9,15 +9,23 @@ public class Plot {
 
     @Id
     private String id;
-    @Indexed(unique = true)
+
+    private String farmId;
     private String name;
     private long area;
     private long production;
 
+
+
+    public long calculateProductivity(){
+        return production/area;
+    }
+
     public Plot() {
     }
 
-    public Plot(String name, long area, long production) {
+    public Plot(String farmId, String name, long area, long production) {
+        this.farmId = farmId;
         this.name = name;
         this.area = area;
         this.production = production;
@@ -29,6 +37,14 @@ public class Plot {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFarmId() {
+        return farmId;
+    }
+
+    public void setFarmId(String farmId) {
+        this.farmId = farmId;
     }
 
     public long getArea() {

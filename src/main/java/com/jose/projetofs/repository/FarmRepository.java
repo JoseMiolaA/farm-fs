@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface FarmRepository extends MongoRepository <Farm, String> {
      List<Farm> findByName(String name);
+
+     @Override
+     void deleteById(String id);
 }

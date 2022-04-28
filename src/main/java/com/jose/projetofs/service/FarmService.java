@@ -34,4 +34,14 @@ public class FarmService implements IFarmService{
     public List<Farm> findByName(String name) {
         return farmRepository.findByName(name);
     }
+
+    @Override
+     public void delete(String id) {
+        farmRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean existsById(String id) {
+        return farmRepository.existsById(id);
+    }
 }

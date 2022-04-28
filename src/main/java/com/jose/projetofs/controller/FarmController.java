@@ -37,4 +37,9 @@ public class FarmController {
     public Farm create(@RequestBody Farm farm){
         return farmService.create(farm);
     }
+
+    @DeleteMapping("/id/{id}")
+    public void delete(@PathVariable String id){
+        farmService.delete(id);
+    }
 }

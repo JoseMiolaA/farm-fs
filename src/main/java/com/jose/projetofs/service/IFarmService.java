@@ -11,7 +11,12 @@ public interface IFarmService {
 
      Optional<Farm> getById(String id);
 
+     List<Farm> findByName(String name);
+
      Farm create(Farm farm);
 
-     List<Farm> findByName(String name);
+     void delete(String id);
+
+     boolean existsById(String id);
+
 }

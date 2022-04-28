@@ -7,9 +7,15 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IPlotService {
-    public List<Plot> getAll();
+     List<Plot> getAll();
 
-    public Optional<Plot> getById(String id);
+     Optional<Plot> getById(String id);
 
-    public Plot create(Farm Plot);
+     Plot create(Plot plot);
+
+     void deleteById(String id);
+
+     List<Plot> getByFarmId(String id);
+
+     Long getProductivityById(String id);
 }

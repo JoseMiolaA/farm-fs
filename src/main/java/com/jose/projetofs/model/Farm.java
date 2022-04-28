@@ -1,6 +1,7 @@
 package com.jose.projetofs.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -10,9 +11,8 @@ public class Farm {
 
     @Id
     private String id;
+    @Indexed(unique = true)
     private String name;
-    private List<Plot> plots;
-
 
     public Farm() {
     }
@@ -24,11 +24,6 @@ public class Farm {
     public Farm(String id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public Farm(String name, List<Plot> plots) {
-        this.name = name;
-        this.plots = plots;
     }
 
     public String getId() {
@@ -47,11 +42,5 @@ public class Farm {
         this.name = name;
     }
 
-    public List<Plot> getPlots() {
-        return plots;
-    }
 
-    public void setPlots(List<Plot> plots) {
-        this.plots = plots;
-    }
 }

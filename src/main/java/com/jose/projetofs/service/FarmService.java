@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FarmService implements IFarmService{
@@ -28,5 +29,10 @@ public class FarmService implements IFarmService{
     @Override
     public Farm create(Farm farm) {
         return farmRepository.save(farm);
+    }
+
+    @Override
+    public List<Farm> findByName(String name) {
+        return farmRepository.findByName(name);
     }
 }

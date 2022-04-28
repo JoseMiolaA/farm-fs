@@ -33,6 +33,22 @@ public class FarmController {
         return farmService.getById(id);
     }
 
+    @GetMapping("/area/{id}")
+    public double getArea(@PathVariable String id){
+        return farmService.getArea(id);
+    }
+
+    @GetMapping("/production/{id}")
+    public double getProduction(@PathVariable String id){
+        return farmService.getProduction(id);
+    }
+
+    @GetMapping("/productivity/{id}")
+    public double getProductivity(@PathVariable String id){
+        return farmService.getProductivity(id);
+    }
+
+
     @PostMapping
     public Farm create(@RequestBody Farm farm){
         return farmService.create(farm);

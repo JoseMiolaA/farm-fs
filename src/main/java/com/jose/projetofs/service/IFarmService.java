@@ -19,4 +19,10 @@ public interface IFarmService {
 
      boolean existsById(String id);
 
+     double getArea(String id);
+
+     double getProduction(String id);
+
+     double getProductivity(String id);
+
 }

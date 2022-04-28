@@ -14,6 +14,9 @@ public class FarmService implements IFarmService{
     @Autowired
     private FarmRepository farmRepository;
 
+    @Autowired
+    private PlotService plotService;
+
     @Override
     public List<Farm> getAll() {
         return this.farmRepository.findAll();
@@ -22,7 +25,26 @@ public class FarmService implements IFarmService{
     @Override
     public Optional<Farm> getById(String id) {
         return farmRepository.findById(id);
+    }
 
+    @Override
+    public double getArea(String id) {
+        return plotService.getByFarmId(id)
+                .stream()
+                .mapToDouble(x -> x.getArea())
+                .sum();
+    }
+
+    @Override
+    public double getProduction(String id) {
+        return plotService.getByFarmId(id)
+                .stream()
+                .mapToDouble(x -> x.getProduction())
+                .sum();
+    }
+    @Override
+    public double getProductivity(String id) {
+        return getProduction(id)/getArea(id);
     }
 
     @Override

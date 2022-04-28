@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public interface IFarmService {
 
-    public List<Farm> getAll();
+     List<Farm> getAll();
 
-    public Farm getById(String id);
+     Optional<Farm> getById(String id);
 
-    public Farm create(Farm farm);
+     Farm create(Farm farm);
 
-    public List<Farm> findByName(String name);
+     List<Farm> findByName(String name);
 }

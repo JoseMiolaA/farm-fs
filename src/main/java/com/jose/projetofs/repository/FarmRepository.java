@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface FarmRepository extends MongoRepository <Farm, String> {
-    public List<Farm> findByName(String name);
+     List<Farm> findByName(String name);
 }

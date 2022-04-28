@@ -29,7 +29,7 @@ public class FarmController {
     }
 
     @GetMapping("/id/{id}")
-    public Farm getById(@PathVariable String id){
+    public Optional<Farm> getById(@PathVariable String id){
         return farmService.getById(id);
     }
 

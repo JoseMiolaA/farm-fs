@@ -20,10 +20,9 @@ public class FarmService implements IFarmService{
     }
 
     @Override
-    public Farm getById(String id) {
-        return farmRepository
-                .findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Id not found"));
+    public Optional<Farm> getById(String id) {
+        return farmRepository.findById(id);
+
     }
 
     @Override

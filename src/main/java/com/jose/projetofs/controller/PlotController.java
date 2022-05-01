@@ -26,7 +26,7 @@ public class PlotController {
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Plot> getById(@PathVariable String id){
+    public Plot getById(@PathVariable String id){
         return plotService.getById(id);
     }
 
@@ -42,8 +42,6 @@ public class PlotController {
 
     @PostMapping
     Plot create(@RequestBody Plot plot){
-        if(!farmService.existsById(plot.getFarmId()))
-            return null; //mandar mensagem adequada
         return plotService.create(plot);
     }
 

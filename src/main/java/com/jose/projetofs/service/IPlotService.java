@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface IPlotService {
      List<Plot> getAll();
 
-     Optional<Plot> getById(String id);
+     Plot getById(String id);
 
      Plot create(Plot plot);
 

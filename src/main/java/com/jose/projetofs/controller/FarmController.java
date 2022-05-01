@@ -14,7 +14,6 @@ import java.util.Optional;
 @RequestMapping("/farm")
 public class FarmController {
 
-
     @Autowired
     private IFarmService farmService;
 
@@ -29,7 +28,7 @@ public class FarmController {
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Farm> getById(@PathVariable String id){
+    public Farm getById(@PathVariable String id){
         return farmService.getById(id);
     }
 

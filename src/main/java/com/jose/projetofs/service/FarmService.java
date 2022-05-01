@@ -2,11 +2,11 @@ package com.jose.projetofs.service;
 
 import com.jose.projetofs.model.Farm;
 import com.jose.projetofs.repository.FarmRepository;
+import com.jose.projetofs.service.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FarmService implements IFarmService{
@@ -23,8 +23,10 @@ public class FarmService implements IFarmService{
     }
 
     @Override
-    public Optional<Farm> getById(String id) {
-        return farmRepository.findById(id);
+    public Farm getById(String id) {
+        return farmRepository
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Id not found " + id));
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.jose.projetofs.model.Plot;
 import com.jose.projetofs.service.IFarmService;
 import com.jose.projetofs.service.IPlotService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,28 +22,33 @@ public class PlotController {
     private IFarmService farmService;
 
     @GetMapping
-    public List<Plot> getAll(){
-        return plotService.getAll();
+    public ResponseEntity<List<Plot>> getAll(){
+        List<Plot> plots = plotService.getAll();
+        return ResponseEntity.ok().body(plots);
     }
 
     @GetMapping("/id/{id}")
-    public Plot getById(@PathVariable String id){
-        return plotService.getById(id);
+    public ResponseEntity<Plot> getById(@PathVariable String id){
+        Plot plot = plotService.getById(id);
+        return ResponseEntity.ok().body(plot);
     }
 
     @GetMapping("/farm_id/{farmId}")
-    public List<Plot> getByFarmId(@PathVariable String farmId){
-        return plotService.getByFarmId(farmId);
+    public ResponseEntity<List<Plot>> getByFarmId(@PathVariable String farmId){
+        List<Plot> plots = plotService.getByFarmId(farmId);
+        return ResponseEntity.ok().body(plots);
     }
 
     @GetMapping("/productivity/{id}")
-    public double getProductivity(@PathVariable String id){
-        return plotService.getProductivityById(id);
+    public ResponseEntity<Double> getProductivity(@PathVariable String id){
+        double productivity = plotService.getProductivityById(id);
+        return ResponseEntity.ok().body(productivity);
     }
 
     @PostMapping
-    Plot create(@RequestBody Plot plot){
-        return plotService.create(plot);
+    public ResponseEntity<Plot> create(@RequestBody Plot plot){
+        Plot createdPlot = plotService.create(plot);
+        return ResponseEntity.ok().body(createdPlot);
     }
 
     @DeleteMapping("/id/{id}")

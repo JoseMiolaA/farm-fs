@@ -44,6 +44,6 @@ public class PlotService implements IPlotService{
 
     @Override
     public double getProductivityById(String id) {
-       return getById(id).calculateProductivity(); //adicionar verificaçao
+       return getById(id).calculateProductivity();
     }
 }

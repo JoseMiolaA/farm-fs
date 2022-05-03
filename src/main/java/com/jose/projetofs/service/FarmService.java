@@ -1,12 +1,14 @@
 package com.jose.projetofs.service;
 
+import com.jose.projetofs.dto.FarmDTO;
 import com.jose.projetofs.model.Farm;
 import com.jose.projetofs.repository.FarmRepository;
+import com.jose.projetofs.service.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FarmService implements IFarmService{
@@ -14,29 +16,40 @@ public class FarmService implements IFarmService{
     @Autowired
     private FarmRepository farmRepository;
 
+    @Autowired
+    private PlotService plotService;
+
     @Override
-    public List<Farm> getAll() {
-        return this.farmRepository.findAll();
+    public List<FarmDTO> getAll() {
+        List<Farm> farms = farmRepository.findAll();
+        return farmsToDTOs(farms);
     }
 
     @Override
-    public Optional<Farm> getById(String id) {
-        return farmRepository.findById(id);
+    public FarmDTO getById(String id) {
+        Farm farm = farmRepository
+                    .findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException("Id not found " + id));
 
+        return farmToDTO(farm);
     }
 
     @Override
-    public Farm create(Farm farm) {
-        return farmRepository.save(farm);
+    public FarmDTO create(Farm farm) {
+        Farm savedFarm = farmRepository.save(farm);
+        return farmToDTO(savedFarm);
     }
 
     @Override
-    public List<Farm> findByName(String name) {
-        return farmRepository.findByName(name);
+    public List<FarmDTO> getByName(String name) {
+        List<Farm> farms = farmRepository.findByName(name);
+        return farmsToDTOs(farms);
     }
 
     @Override
      public void delete(String id) {
+        if(!existsById(id))
+            throw new EntityNotFoundException("Id not found " + id);
         farmRepository.deleteById(id);
     }
 
@@ -44,4 +57,41 @@ public class FarmService implements IFarmService{
     public boolean existsById(String id) {
         return farmRepository.existsById(id);
     }
+
+
+    private FarmDTO farmToDTO(Farm farm){
+        FarmDTO farmDTO = new FarmDTO();
+        farmDTO.setId(farm.getId());
+        farmDTO.setName(farm.getName());
+        farmDTO.setArea(getArea(farm.getId()));
+        farmDTO.setProduction(getProduction(farm.getId()));
+        farmDTO.setProductivity(getProductivity(farm.getId()));
+        return farmDTO;
+    }
+
+    private List<FarmDTO> farmsToDTOs (List<Farm> farms){
+        List<FarmDTO> farmDTOs= new ArrayList<>();
+
+        farms.forEach(s -> farmDTOs.add(farmToDTO(s)));
+
+        return farmDTOs;
+    }
+
+    private double getArea(String id) {
+        return plotService.getByFarmId(id)
+                .stream()
+                .mapToDouble(x -> x.getArea())
+                .sum();
+    }
+
+    private double getProduction(String id) {
+        return plotService.getByFarmId(id)
+                .stream()
+                .mapToDouble(x -> x.getProduction())
+                .sum();
+    }
+    private double getProductivity(String id) {
+        return getProduction(id)/getArea(id);
+    }
+
 }

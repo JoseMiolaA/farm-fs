@@ -14,10 +14,16 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.6.7'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
+	// https://mvnrepository.com/artifact/io.rest-assured/spring-mock-mvc
+	testImplementation group: 'io.rest-assured', name: 'spring-mock-mvc', version: '5.0.1'
+	// https://mvnrepository.com/artifact/org.mockito/mockito-core
+	testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.3.1'
+
+
 }
 
 tasks.named('test') {

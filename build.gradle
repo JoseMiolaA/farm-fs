@@ -16,6 +16,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-web:2.6.7'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'junit:junit:4.13.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 	// https://mvnrepository.com/artifact/io.rest-assured/spring-mock-mvc

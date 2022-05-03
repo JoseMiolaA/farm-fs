@@ -1,27 +1,22 @@
 package com.jose.projetofs.service;
 
+import com.jose.projetofs.dto.FarmDTO;
 import com.jose.projetofs.model.Farm;
 
 import java.util.List;
 
 public interface IFarmService {
 
-     List<Farm> getAll();
+     List<FarmDTO> getAll();
 
-     Farm getById(String id);
+     FarmDTO getById(String id);
 
-     List<Farm> findByName(String name);
+     List<FarmDTO> getByName(String name);
 
-     Farm create(Farm farm);
+     FarmDTO create(Farm farm);
 
      void delete(String id);
 
      boolean existsById(String id);
-
-     double getArea(String id);
-
-     double getProduction(String id);
-
-     double getProductivity(String id);
 
 }

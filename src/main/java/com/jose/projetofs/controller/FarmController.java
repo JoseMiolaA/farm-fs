@@ -1,15 +1,13 @@
 package com.jose.projetofs.controller;
 
+import com.jose.projetofs.dto.FarmDTO;
 import com.jose.projetofs.model.Farm;
-import com.jose.projetofs.model.Plot;
 import com.jose.projetofs.service.IFarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/farm")
@@ -19,45 +17,26 @@ public class FarmController {
     private IFarmService farmService;
 
     @GetMapping("/name/{name}")
-    public ResponseEntity<List<Farm>> getByName(@PathVariable String name){
-        List<Farm> farms = farmService.findByName(name);
+    public ResponseEntity<List<FarmDTO>> getByName(@PathVariable String name){
+        List<FarmDTO> farms = farmService.getByName(name);
         return ResponseEntity.ok().body(farms);
     }
 
     @GetMapping
-    public ResponseEntity<List<Farm>> getAll(){
-        List<Farm> farms = farmService.getAll();
+    public ResponseEntity<List<FarmDTO>> getAll(){
+        List<FarmDTO> farms = farmService.getAll();
         return ResponseEntity.ok().body(farms);
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<Farm> getById(@PathVariable String id){
-        Farm farm = farmService.getById(id);
+    public ResponseEntity<FarmDTO> getById(@PathVariable String id){
+        FarmDTO farm = farmService.getById(id);
         return ResponseEntity.ok().body(farm);
     }
 
-    @GetMapping("/area/{id}")
-    public ResponseEntity<Double> getArea(@PathVariable String id){
-        double area = farmService.getArea(id);
-        return ResponseEntity.ok().body(area);
-    }
-
-    @GetMapping("/production/{id}")
-    public ResponseEntity<Double> getProduction(@PathVariable String id){
-        double production = farmService.getProduction(id);
-        return ResponseEntity.ok().body(production);
-    }
-
-    @GetMapping("/productivity/{id}")
-    public ResponseEntity<Double> getProductivity(@PathVariable String id){
-        double productivity = farmService.getProductivity(id);
-        return ResponseEntity.ok().body(productivity);
-    }
-
-
     @PostMapping
-    public ResponseEntity<Farm> create(@RequestBody Farm farm){
-        Farm createdFarm = farmService.create(farm);
+    public ResponseEntity<FarmDTO> create(@RequestBody Farm farm){
+        FarmDTO createdFarm = farmService.create(farm);
         return ResponseEntity.ok().body(createdFarm);
     }
 
@@ -65,4 +44,5 @@ public class FarmController {
     public void delete(@PathVariable String id){
         farmService.delete(id);
     }
+
 }

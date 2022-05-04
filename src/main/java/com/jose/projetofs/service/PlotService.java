@@ -50,10 +50,8 @@ public class PlotService implements IPlotService{
         String farmID = plot.getFarmId();
 
         if(!farmRepository.existsById(farmID)) {
-            System.out.println("Aqui1");
             throw new EntityNotFoundException("Farm Id not found " + farmID);
         }
-        System.out.println("Aqui2");
         Plot savedPlot = plotRepository.save(plot);
         return plotToDTO(savedPlot);
     }
@@ -77,7 +75,8 @@ public class PlotService implements IPlotService{
         plotDTO.setFarmId(plot.getFarmId());
         plotDTO.setName(plot.getName());
         plotDTO.setArea(plot.getArea());
-        plotDTO.setProduction(plot.getProduction());
+        plotDTO.setProductions((plot.getProductions()));
+        plotDTO.setTotalProduction(plot.calculateTotalProduction());
         plotDTO.setProductivity(plot.calculateProductivity());
 
         return plotDTO;

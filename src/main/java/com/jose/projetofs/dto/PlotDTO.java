@@ -1,23 +1,29 @@
 package com.jose.projetofs.dto;
 
+import com.jose.projetofs.model.Production;
+
+import java.util.List;
+
 public class PlotDTO {
     private String id;
     private String farmId;
     private String name;
     private double area;
-    private double production;
+    private double totalProduction;
     private double productivity;
+    private List<Production> productions;
 
     public PlotDTO() {
     }
 
-    public PlotDTO(String id, String farmId, String name, double area, double production, double productivity) {
+    public PlotDTO(String id, String farmId, String name, double area, double totalProduction, double productivity, List<Production> productions) {
         this.id = id;
         this.farmId = farmId;
         this.name = name;
         this.area = area;
-        this.production = production;
+        this.totalProduction = totalProduction;
         this.productivity = productivity;
+        this.productions = productions;
     }
 
     public String getId() {
@@ -52,12 +58,12 @@ public class PlotDTO {
         this.area = area;
     }
 
-    public double getProduction() {
-        return production;
+    public double getTotalProduction() {
+        return totalProduction;
     }
 
-    public void setProduction(double production) {
-        this.production = production;
+    public void setTotalProduction(double totalProduction) {
+        this.totalProduction = totalProduction;
     }
 
     public double getProductivity() {
@@ -66,5 +72,13 @@ public class PlotDTO {
 
     public void setProductivity(double productivity) {
         this.productivity = productivity;
+    }
+
+    public List<Production> getProductions() {
+        return productions;
+    }
+
+    public void setProductions(List<Production> productions) {
+        this.productions = productions;
     }
 }

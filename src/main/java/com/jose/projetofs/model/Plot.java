@@ -4,6 +4,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Document
 public class Plot {
 
@@ -13,30 +16,37 @@ public class Plot {
     private String farmId;
     private String name;
     private double area;
-    private double production;
+    private List<Production> productions;
 
 
+    public double calculateProductivity() {
+        return calculateTotalProduction() / area;
+    }
 
-    public double calculateProductivity(){
-        return production/area;
+    public double calculateTotalProduction(){
+        return productions
+                .stream()
+                .mapToDouble(x -> x.getQuantity())
+                .sum();
+    }
+
+    public Plot(String id, String farmId, String name, double area, List<Production> productions) {
+        this.id = id;
+        this.farmId = farmId;
+        this.name = name;
+        this.area = area;
+        this.productions = productions;
     }
 
     public Plot() {
     }
 
-    public Plot(String farmId, String name, long area, long production) {
-        this.farmId = farmId;
-        this.name = name;
-        this.area = area;
-        this.production = production;
+    public String getId() {
+        return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFarmId() {
@@ -47,27 +57,28 @@ public class Plot {
         this.farmId = farmId;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public double getArea() {
         return area;
     }
 
-    public void setArea(long area) {
+    public void setArea(double area) {
         this.area = area;
     }
 
-    public double getProduction() {
-        return production;
+    public List<Production> getProductions() {
+        return productions;
     }
 
-    public void setProduction(long production) {
-        this.production = production;
+    public void setProductions(List<Production> productions) {
+        this.productions = productions;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }

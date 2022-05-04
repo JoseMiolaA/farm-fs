@@ -3,12 +3,14 @@ package com.jose.projetofs.controller;
 import com.jose.projetofs.dto.PlotDTO;
 import com.jose.projetofs.model.Farm;
 import com.jose.projetofs.model.Plot;
+import com.jose.projetofs.model.Production;
 import com.jose.projetofs.service.IFarmService;
 import com.jose.projetofs.service.IPlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

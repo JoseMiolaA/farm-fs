@@ -47,7 +47,6 @@ public class FarmControllerTests {
         farmDTOs.add(new FarmDTO("id2", "Farm2", 8.0, 4.0, 2.0));
 
         farm = new Farm ("Farm");
-
     }
 
 

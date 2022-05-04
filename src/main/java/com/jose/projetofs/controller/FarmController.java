@@ -4,9 +4,11 @@ import com.jose.projetofs.dto.FarmDTO;
 import com.jose.projetofs.model.Farm;
 import com.jose.projetofs.service.IFarmService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -37,12 +39,13 @@ public class FarmController {
     @PostMapping
     public ResponseEntity<FarmDTO> create(@RequestBody Farm farm){
         FarmDTO createdFarm = farmService.create(farm);
-        return ResponseEntity.ok().body(createdFarm);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdFarm);
     }
 
     @DeleteMapping("/id/{id}")
-    public void delete(@PathVariable String id){
+    public ResponseEntity<FarmDTO> delete(@PathVariable String id){
         farmService.delete(id);
+        return ResponseEntity.ok().body(null);
     }
 
 }

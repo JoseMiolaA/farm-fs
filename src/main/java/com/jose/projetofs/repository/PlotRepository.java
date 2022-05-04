@@ -8,6 +8,7 @@ import java.util.List;
 public interface PlotRepository extends MongoRepository<Plot, String> {
 
     List<Plot> findByFarmId(String id);
+    List<Plot> findByName(String name);
 
     @Override
     void deleteById(String s);

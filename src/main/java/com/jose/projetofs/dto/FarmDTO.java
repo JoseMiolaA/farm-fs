@@ -5,17 +5,17 @@ public class FarmDTO {
     private String id;
     private String name;
     private double area;
-    private double production;
+    private double totalProduction;
     private double productivity;
 
     public FarmDTO() {
     }
 
-    public FarmDTO(String id, String name, double area, double production, double productivity) {
+    public FarmDTO(String id, String name, double area, double totalProduction, double productivity) {
         this.id = id;
         this.name = name;
         this.area = area;
-        this.production = production;
+        this.totalProduction = totalProduction;
         this.productivity = productivity;
     }
 
@@ -43,12 +43,12 @@ public class FarmDTO {
         this.area = area;
     }
 
-    public double getProduction() {
-        return production;
+    public double getTotalProduction() {
+        return totalProduction;
     }
 
-    public void setProduction(double production) {
-        this.production = production;
+    public void setTotalProduction(double totalProduction) {
+        this.totalProduction = totalProduction;
     }
 
     public double getProductivity() {

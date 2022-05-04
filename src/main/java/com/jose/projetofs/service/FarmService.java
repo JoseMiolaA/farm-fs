@@ -64,7 +64,7 @@ public class FarmService implements IFarmService{
         farmDTO.setId(farm.getId());
         farmDTO.setName(farm.getName());
         farmDTO.setArea(getArea(farm.getId()));
-        farmDTO.setProduction(getProduction(farm.getId()));
+        farmDTO.setTotalProduction(getProduction(farm.getId()));
         farmDTO.setProductivity(getProductivity(farm.getId()));
         return farmDTO;
     }
@@ -87,7 +87,7 @@ public class FarmService implements IFarmService{
     private double getProduction(String id) {
         return plotService.getByFarmId(id)
                 .stream()
-                .mapToDouble(x -> x.getProduction())
+                .mapToDouble(x -> x.getTotalProduction())
                 .sum();
     }
     private double getProductivity(String id) {

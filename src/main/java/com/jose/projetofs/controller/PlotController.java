@@ -1,13 +1,16 @@
 package com.jose.projetofs.controller;
 
+import com.jose.projetofs.dto.PlotDTO;
 import com.jose.projetofs.model.Farm;
 import com.jose.projetofs.model.Plot;
+import com.jose.projetofs.model.Production;
 import com.jose.projetofs.service.IFarmService;
 import com.jose.projetofs.service.IPlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,32 +25,26 @@ public class PlotController {
     private IFarmService farmService;
 
     @GetMapping
-    public ResponseEntity<List<Plot>> getAll(){
-        List<Plot> plots = plotService.getAll();
+    public ResponseEntity<List<PlotDTO>> getAll(){
+        List<PlotDTO> plots = plotService.getAll();
         return ResponseEntity.ok().body(plots);
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<Plot> getById(@PathVariable String id){
-        Plot plot = plotService.getById(id);
+    public ResponseEntity<PlotDTO> getById(@PathVariable String id){
+        PlotDTO plot = plotService.getById(id);
         return ResponseEntity.ok().body(plot);
     }
 
     @GetMapping("/farm_id/{farmId}")
-    public ResponseEntity<List<Plot>> getByFarmId(@PathVariable String farmId){
-        List<Plot> plots = plotService.getByFarmId(farmId);
+    public ResponseEntity<List<PlotDTO>> getByFarmId(@PathVariable String farmId){
+        List<PlotDTO> plots = plotService.getByFarmId(farmId);
         return ResponseEntity.ok().body(plots);
     }
 
-    @GetMapping("/productivity/{id}")
-    public ResponseEntity<Double> getProductivity(@PathVariable String id){
-        double productivity = plotService.getProductivityById(id);
-        return ResponseEntity.ok().body(productivity);
-    }
-
     @PostMapping
-    public ResponseEntity<Plot> create(@RequestBody Plot plot){
-        Plot createdPlot = plotService.create(plot);
+    public ResponseEntity<PlotDTO> create(@RequestBody Plot plot){
+        PlotDTO createdPlot = plotService.create(plot);
         return ResponseEntity.ok().body(createdPlot);
     }
 

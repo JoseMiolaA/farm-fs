@@ -1,44 +1,29 @@
-package com.jose.projetofs.model;
+package com.jose.projetofs.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.jose.projetofs.model.Production;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Document
-public class Plot {
-
-    @Id
+public class PlotDTO {
     private String id;
-
     private String farmId;
     private String name;
     private double area;
+    private double totalProduction;
+    private double productivity;
     private List<Production> productions;
 
-
-    public double calculateProductivity() {
-        return calculateTotalProduction() / area;
+    public PlotDTO() {
     }
 
-    public double calculateTotalProduction(){
-        return productions
-                .stream()
-                .mapToDouble(x -> x.getQuantity())
-                .sum();
-    }
-
-    public Plot(String id, String farmId, String name, double area, List<Production> productions) {
+    public PlotDTO(String id, String farmId, String name, double area, double totalProduction, double productivity, List<Production> productions) {
         this.id = id;
         this.farmId = farmId;
         this.name = name;
         this.area = area;
+        this.totalProduction = totalProduction;
+        this.productivity = productivity;
         this.productions = productions;
-    }
-
-    public Plot() {
     }
 
     public String getId() {
@@ -73,6 +58,22 @@ public class Plot {
         this.area = area;
     }
 
+    public double getTotalProduction() {
+        return totalProduction;
+    }
+
+    public void setTotalProduction(double totalProduction) {
+        this.totalProduction = totalProduction;
+    }
+
+    public double getProductivity() {
+        return productivity;
+    }
+
+    public void setProductivity(double productivity) {
+        this.productivity = productivity;
+    }
+
     public List<Production> getProductions() {
         return productions;
     }
@@ -80,5 +81,4 @@ public class Plot {
     public void setProductions(List<Production> productions) {
         this.productions = productions;
     }
-
 }
